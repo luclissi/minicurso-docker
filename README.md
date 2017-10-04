@@ -1,7 +1,8 @@
 # Minicurso Docker - FATEC Indaiatuba
 
 O curso tem como tópicos: 
-    - O que é um Containers?
+
+    - O que é um Container?
     - O que é Docker?
     - História do Docker 
     - DevOps
