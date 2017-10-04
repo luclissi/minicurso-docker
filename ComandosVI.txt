@@ -1,0 +1,74 @@
+https://www.vivaolinux.com.br/dica/Comandos-basicos-do-VI
+
+Cursor:
+k : para cima
+backspace: esquerda
+space: direita
+j: para baixo
+Toda vez que desejar voltar ao modo comando, pressione a tecla ESC. 
+
+Movimentação de palavra:
+w : pula uma palavra
+b : volta uma palavra
+c : vai para o fim da palavra
+ex: 2w - pula duas palavras
+$ : vai para o fim da linha
+^ ou O - vai para o início da linha
+
+
+Controle do cursor:
+G - final do arquivo
+#G - vai para uma linha qualquer
+:# - vai para uma linha
+Ctrl g - informa a linha que você foi
+Ctrl b - retorna página
+Ctrl f - avança página
+Ctrl u - retorna metade da página
+Ctrl d - avança metade da página
+Ctrl I - refresh da tela
+L - última linha da tela
+M - meio da linha na tela
+H - início da tela
+
+
+Modo de entrada:
+a - acrescenta texto depois do cursor
+i - insere texto antes do cursor
+o - abre uma linha de texto abaixo
+O - abre uma linha de texto
+A - acrescenta texto no fim da linha
+I - insere texto no início da linha
+
+
+Deletando texto:
+x - deleta um caracter
+dw - deleta palavra
+ex: 2dw - delete duas palavras
+dd - deleta linha corrente
+dG - deleta até a última linha do arquivo
+d$ - deleta até o fim da linha
+d^ - deleta até o início da linha
+
+
+Movendo texto: 
+
+Primeiro executar o comando deletar, depois executar o colar:
+p - cola abaixo do cursor
+P - cola acima do cursor
+
+
+Copiando texto:
+yw - copia palavra corrente
+yy - copia a linha corrente
+yG - copia até a última linha do arquivo
+y$ - copia até o fim da linha
+y^ - copia até o início da linha
+
+
+Alterando o texto:
+r - substitui caracter
+R - substitui todas as letras até pressionar ESC
+cw - altera palavra
+cc - altera a linha inteira
+cG - altera até a última linha do arquivo
+c$ - altera até o fim da linha

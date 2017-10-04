@@ -1,0 +1,12 @@
+version: '2'
+services:
+  minicurso:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3999:3999"
+    volumes:
+      - .:/go/src/present
+  hello:
+    image: hello-world

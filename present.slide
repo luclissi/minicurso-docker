@@ -1,0 +1,276 @@
+Docker
+Minicurso de Docker
+15:04 4 Oct 2017
+Tags: foo, bar, baz
+
+Lucca Ecclissi
+Desenvolvedor, Lumminy
+lucca@lumminy.com
+https://github.com/lucca-ecclissi
+@lecclissi
+
+* Sobre mim
+
+- Experiência
+    Cursando Análise e Desenvolvimento de Sistemas pela FATEC de Indaiatuba
+    Trabalhando a 7 meses como desenvolver na empresa Lumminy Consultoria e Serviços.
+    Técnico em Sistema da Informação pela FIEC 
+
+- Áreas de Interesse
+    Desenvolvimento
+    Internet das Coisas
+    Entusiasta em Segurança da informação e em Análises de dados
+
+- Contatos
+    lucca@lumminy.com
+    https://github.com/lucca-ecclissi
+    @lecclissi
+
+
+* O que é um Containers?
+
+.image img/dockerVsvms.png _ 800
+
+
+* O que é Docker?
+
+.image img/docker-cash.png _ 800
+
+* 
+.image img/lxcvsdocker.png _ 600
+
+* História do Docker 
+
+dotCloud - ferramentas para LXC 
+
+Open Source - GO - 2013
+
+Docker CE (Community Edition)
+
+Docker EE (Enterprise Edition)
+
+- Básico - infra-estrutura certificada - suporte da Docker Inc.
+- Normal - gerenciamento de imagens e contêiner, integração de usuários LDAP / AD - controle de acesso.
+- Avançado - Docker Security Scanning  - monitoramento de vulnerabilidade.
+
+
+* 
+.image img/dockerEngine.png _ 900
+
+
+* DevOps
+
+.image img/devops.png _ 800
+
+* Ferramentas do Docker
+
+- Docker Engine
+    Ferramenta para Administrar containers.
+
+- Docker Machine
+    Ferramenta para provisionar e gerenciar seus hosts Dockerized (hosts com o Docker Engine neles).
+
+- Docker Swarm 
+    Ferramenta para Clusterização de Serviços/Containers
+
+- Docker Compose
+    Ferramenta que define e executa aplicativos do Docker
+
+- Docker Registry
+    Docker Hub/ Docker Store
+
+* Docker Engine vs Docker Machine
+
+.image img/machine.png _ 600
+
+* Docker Internals
+
+- Namespaces 
+    Isolamentos de componentes Ex:. isolamento de processos. 
+
+- Cgroups 
+    Limita CPU/Memoria/IO
+
+- Netfilter 
+    Interação Network docker com host
+
+- Camadas 
+    Ultima Write
+
+- Copy-on-Write
+
+* Instalação do Docker CE
+
+.link https://docs.docker.com/docker-for-mac/install/ Docker para Mac
+
+.link https://docs.docker.com/docker-for-windows/install/ Docker para Windows 
+
+.link https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/ Docker para Linux
+    curl -fsSL https://get.docker.com/ | sh
+
+* Administrando Containers - Docker Engine
+
+- RUN
+    Executa um comando em um novo container.
+    -ti Interação com o terminal
+    -d Roda em background 
+
+- PS
+    Lista todos containes que estão rodando.
+    -a Lista todos containers
+
+- IMAGES
+    Lista todas imagens do host
+
+- ATTACH
+    Attacha a execução do container
+
+* 
+
+- CREATE
+    Cria um novo container 
+
+- STOP 
+    Para um ou mais containers
+
+- START
+    Inicia um ou mais containers parados
+
+- PAUSA
+    Pausa a execução de um container
+
+- UNPAUSE 
+    Despausa o container pausado
+
+* 
+
+- STATS 
+    Exibe o consumo do container
+
+- TOP 
+    Exibe os processos rodando no container
+
+- LOGS 
+    Exibe os logs do container
+
+- RM 
+    Apaga um ou mais containers 
+    -f Força se estiver o container estiver rodando
+
+
+* Limitando CPU e Memoria - Docker Engine
+
+- INSPECT 
+    Exibe informações do container.
+
+- RUN 
+    --name <nome> Adiciona um nome ao container
+    --memory <qtd> Limita a memoria
+    Ex:. docker run -ti --memory 512m --name minicurso ubuntu
+    --cpu-shares <qtd> Limita a CPU
+    Ex:. docker run -ti --cpu-shares 1024 --name minicurso01 ubuntu
+
+- UPDATE 
+    Atualiza o container com os parametros passados
+    Ex:. docker update --cpu-shares 512 -m 256m minicurso01
+
+* Criando Dockerfiles
+
+- FROM 
+    Define a image base para o Dockerfile
+    Ex:. FROM alpine
+
+- MAINTAINER
+    Autor da image
+    Ex:. MAINTAINER luccame
+
+- RUN 
+    Executa comandos no container
+    CUIDADO - cada comando é uma nova camada no container
+    Ex:. RUN echo "Eae pessoal!"
+
+* 
+
+- LABEL 
+    Metadado para a imagem 
+    Ex:. LABEL "minicurso" = "Docker"
+
+- EXPOSE
+    Informa as portas que o container vai usar na rede
+    Ex:. EXPOSE 3999
+
+- ENV
+    Variaveis de ambiente 
+    Ex:. ENV ["DIGA_OLA=tchal","DIGA_TCHAL=ola"]
+
+- ADD
+    Copia os arquivos do host para o container
+    EX:. ADD ./src /dev/null
+
+* 
+
+- COPY
+    Quase o mesmo do ADD, porem não descompacta e não aceita URL 
+    Ex:. COPY ./src /tmp
+
+- ENTRYPOINT
+    Comando que irá iniciar junto ao container
+    Ex:. ENTRYPOINT ["/bin/echo","Olha só!"]
+
+- CMD
+    Quase o mesmo que o ENTRYPOINT, pode executar depois do ENTRYPOINT
+    Ex:. CMD ["Não é que foi!"]
+
+- VOLUME
+    Ponto de montagem a partir do host
+    Ex:. VOLUME /src
+
+* 
+
+- USER
+    Define um nome de usuário
+    Ex:. USER luccame
+
+- WORKDIR
+    Diretório de trabalho (como um cd)
+    Ex:. WORKDIR /app
+
+* Rodando Dockerfile
+
+- BUILD
+    Constroi a imagem do Dockerfile
+    Ex:. docker build .
+    -t Adiciona uma tag a sua image
+    Ex:. docker build -t minicurso:1.0 .
+
+- RMI
+    Remove imagens
+    Ex:. docker rmi minicurso
+
+* Docker Compose
+
+    version: '2'
+    services:
+        minicurso:
+            image luccame/present
+            build: 
+                context: .
+                dockerfile: Dockerfile
+            ports:
+                - "3999:3999"
+            volumes:
+                - .:/go/src/present
+        hello:
+            image: hello-world
+
+
+* Referências
+
+.link https://linoxide.com/containers/guide-docker-dockerfile-example-build-image/ Dockerfile
+
+.link https://www.youtube.com/channel/UCJnKVGmXRXrH49Tvrx5X0Sw LinuxTips
+
+.link https://docs.docker.com/ DockerDoc
+
+.link https://www.mundodocker.com.br/ Mundo Docker
+        
