@@ -18,7 +18,7 @@ O curso tem como tópicos:
 Execute o comando
 
 ```
-$ docker pull luccame/present:docker_01
+$ docker run luccame/present:docker_01
 ```
 
 e abra o link [Minicurso Docker](http://localhost:3999)
